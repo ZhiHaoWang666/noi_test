@@ -1,0 +1,56 @@
+思路：走过的每一个点，就把这个值的点加到sum的身上，然后通过打擂台的
+方法，将ANS和SUM进行比较
+例🌰：
+
+dfs(x,y,sum){
+    ans=max(ans,sum)
+    if(x<=n){
+        <dfs(x+1,y,sum+a[x+1][y])
+        dfs(x+1,y+1,sum+a[x+1][y+1])
+    }
+}
+
+当我们DP来写的时候，代码就是这个样子的
+
+例🌰：
+
+得知状态是a[i][j]表示已i,j为首的数字三角形1d[a[]最大值和
+
+状态转移方程：d[i][j] = a[i][j] + max(a[i+1][j],a[i+1][j+1])
+最后一层的数字最大和就是它本身
+
+所以我们要声明一个d数组用来存储状态
+
+for(i=1;i<=n;i++){
+    d[n][i] = a[n][i]       赋值
+}
+递推求解
+for(i=1;i<=n;i++){
+    for(j=1;j<=1;j++){
+        d[i][j] = a[i][j] + max(a[i+1][j],a[i+1][j+1])
+    }
+}
+
+例🌰：
+
+递归求解
+func(x,y){
+    if(x<n){
+        return a[x][y]+max(fun(x+1,y),func(x+1,y+1))
+    }else{
+        return a[x][y];
+    }
+}
+
+例🌰：
+
+func(x,y){
+    if(x<n){
+        if(a[x][y] == -1){
+            d[x][y] = a[x][y]+max(func(x+1,y),func(x+1,y+1))
+            return d[x][y]
+        }else[
+            return d[x][y];
+        ]
+    }
+}

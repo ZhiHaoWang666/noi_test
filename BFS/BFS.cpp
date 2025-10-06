@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+
+const int N  = 20;
+
+int a[N][N];//存储地图
+int q[N*N][3];
+int head = 1;
+int tail = 1;
+int n,m,k,tx,ty;
+int fx[5] = {0,0,1,0,-1};
+int fy[5] = {0,1,0,-1,0};
+
+int main(){
+    cin >> n >> m;
+    q[1][1] = 1;
+    q[1][2] = 1;
+    a[1][1] = 1;
+    
+    while(head<=tail){
+        for(int i=1;i<=4;i++){
+            tx=q[head][1]+fx[i];
+            ty=q[head][2]+fy[i];
+            if(tx>=1&&tx<=n&&ty>=1&&ty<=m&&a[tx][ty] == 0){
+                tail ++;
+                q[tail][1] = tx;
+                q[tail][2] = ty;
+                k++;
+                a[tx][ty] = k;
+            
+            }
+        }
+        head++;
+    }
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=m;j++){
+            cout << a[i][j] << " ";
+        }
+        cout << endl;
+    }
+    //cout <<  << endl;
+    return 0;
+}
